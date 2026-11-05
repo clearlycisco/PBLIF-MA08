@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #2563eb; --primary-hover: #1d4ed8;
+    --sidebar-bg: #1e293b; --sidebar-text: #94a3b8; --sidebar-active: #334155;
+    --bg-light: #f1f5f9; --white: #ffffff;
+    --text-dark: #0f172a; --text-muted: #64748b;
+    --border: #e2e8f0; --danger: #ef4444; --warning: #f59e0b; --warning-hover: #d97706;
+}
+
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding: 0; height: 100vh; overflow: hidden; }
+
+/* SEMBUNYIKAN RADIO & CHECKBOX TRICK */
+input.nav-radio, input.modal-checkbox { display: none; }
+
+/* CSS TRICK: NAVIGASI PINDAH TAB */
+#page-login { display: none; position: fixed; inset: 0; background: var(--bg-light); z-index: 1000; align-items: center; justify-content: center; }
+#app-layout { display: flex; width: 100%; height: 100vh; }
+.page-content { display: none; }
+
+#nav-login:checked ~ #page-login { display: flex; }
+#nav-login:checked ~ #app-layout { display: none; }
+
+#nav-dash:checked ~ #app-layout #page-dashboard { display: block; }
+#nav-dash:checked ~ #app-layout .sidebar .item-dash { background-color: var(--sidebar-active); color: var(--white); border-left-color: var(--primary); }
+
+#nav-anggota:checked ~ #app-layout #page-anggota { display: block; }
+#nav-anggota:checked ~ #app-layout .sidebar .item-anggota { background-color: var(--sidebar-active); color: var(--white); border-left-color: var(--primary); }
+
+#nav-kegiatan:checked ~ #app-layout #page-kegiatan { display: block; }
+#nav-kegiatan:checked ~ #app-layout .sidebar .item-kegiatan { background-color: var(--sidebar-active); color: var(--white); border-left-color: var(--primary); }
+
+#nav-peserta:checked ~ #app-layout #page-peserta { display: block; }
+#nav-peserta:checked ~ #app-layout .sidebar .item-peserta { background-color: var(--sidebar-active); color: var(--white); border-left-color: var(--primary); }
+
+#nav-laporan:checked ~ #app-layout #page-laporan { display: block; }
+#nav-laporan:checked ~ #app-layout .sidebar .item-laporan { background-color: var(--sidebar-active); color: var(--white); border-left-color: var(--primary); }
+
+/* CSS TRICK: MEMBUKA POP-UP MODAL TAMBAH & EDIT */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; }
+
+#toggle-modal-kategori:checked ~ .modal-kategori { display: flex; }
+#toggle-modal-anggota:checked ~ .modal-anggota { display: flex; }
+#toggle-modal-kegiatan:checked ~ .modal-kegiatan { display: flex; }
+#toggle-modal-peserta:checked ~ .modal-peserta { display: flex; }
+
+#toggle-modal-edit-kategori:checked ~ .modal-edit-kategori { display: flex; }
+#toggle-modal-edit-anggota:checked ~ .modal-edit-anggota { display: flex; }
+#toggle-modal-edit-kegiatan:checked ~ .modal-edit-kegiatan { display: flex; }
+#toggle-modal-edit-peserta:checked ~ .modal-edit-peserta { display: flex; }
+
+/* TAMPILAN KARTU LOGIN */
+.login-card { background: var(--white); width: 100%; max-width: 400px; padding: 40px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+.login-header { text-align: center; margin-bottom: 30px; }
+.login-header h1 { font-size: 28px; color: var(--primary); margin: 0 0 8px 0; font-weight: 700; }
+.login-header p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+/* SIDEBAR & LAYOUT */
+.sidebar { width: 260px; background-color: var(--sidebar-bg); color: var(--white); display: flex; flex-direction: column; z-index: 10; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+.sidebar-header { padding: 25px 20px; font-size: 22px; font-weight: 700; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); letter-spacing: 1px; }
+.menu-list { padding: 15px 0; margin: 0; }
+.menu-item { padding: 15px 25px; display: block; color: var(--sidebar-text); font-weight: 500; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; }
+.menu-item:hover { background-color: var(--sidebar-active); color: var(--white); }
+
+.main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+.topbar { background-color: var(--white); padding: 15px 35px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+.content-wrapper { padding: 35px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+
+.page-title { font-size: 26px; font-weight: 700; margin: 0 0 8px 0; }
+.page-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; display: block; }
+.panel { background-color: var(--white); padding: 25px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 25px; }
+
+/* CARDS & KALENDER */
+.card-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 25px; }
+.card { background-color: var(--white); padding: 25px; border-radius: 12px; border: 1px solid var(--border); border-left: 5px solid var(--primary); }
+.card-title { color: var(--text-muted); font-size: 13px; font-weight: 600; text-transform: uppercase; }
+.card-value { font-size: 36px; font-weight: 700; color: var(--text-dark); margin-top: 10px; display: block; }
+
+.calendar-container { background: var(--white); padding: 25px; border-radius: 12px; border: 1px solid var(--border); }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.calendar-day-name { font-weight: 700; font-size: 12px; color: var(--text-muted); text-transform: uppercase; padding: 10px 0; border-bottom: 2px solid var(--border); text-align: center; }
+.calendar-day-cell { min-height: 90px; border: 1px solid var(--border); border-radius: 8px; padding: 8px; font-size: 12px; background: #fff; }
+.calendar-day-cell.empty { background: #f8fafc; border-style: dashed; }
+.calendar-day-cell.today { border: 2px solid var(--primary); background: #eff6ff; }
+.date-number { font-weight: 600; margin-bottom: 4px; }
+.calendar-event-chip { font-size: 11px; padding: 4px 6px; border-radius: 5px; color: white; margin-top: 4px; font-weight: 500; }
+
+/* DIAGRAM BATANG CSS MURNI */
+.chart-container { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin-top: 15px; }
+.chart-wrapper { display: flex; align-items: flex-end; justify-content: space-around; height: 180px; border-bottom: 2px solid var(--border); padding-bottom: 5px; }
+.chart-bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+.bar-value { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+.chart-bar { width: 45px; border-radius: 6px 6px 0 0; }
+.bar-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-top: 8px; }
+
+/* TOMBOL & FORM */
+.btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.btn-primary { background-color: var(--primary); color: var(--white); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-secondary { background-color: #f1f5f9; color: var(--text-dark); border: 1px solid var(--border); }
+.btn-warning { background-color: var(--warning); color: var(--white); padding: 6px 12px; border-radius: 6px; border: none; font-size: 13px; margin-right: 5px; cursor: pointer; }
+.btn-warning:hover { background-color: var(--warning-hover); }
+.btn-danger { background-color: #fee2e2; color: var(--danger); padding: 6px 12px; border-radius: 6px; border: none; font-size: 13px; cursor: pointer; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 10px; }
+th { background-color: #f8fafc; padding: 14px 15px; text-align: left; font-size: 13px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+td { padding: 15px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.badge { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; background: #f1f5f9; }
+
+/* MODAL BOX */
+.modal-content { background: var(--white); width: 650px; max-width: 90%; border-radius: 16px; padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+.modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+.modal-header h2 { margin: 0 0 5px 0; font-size: 20px; }
+.modal-header p { margin: 0; font-size: 13px; color: var(--text-muted); }
+.close-btn { cursor: pointer; font-size: 24px; color: var(--text-muted); }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full-width { grid-column: 1 / -1; }
+label { font-size: 13px; font-weight: 600; }
+input, select, textarea { padding: 12px 15px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #f8fafc; box-sizing: border-box; width: 100%; }
+.modal-footer { margin-top: 25px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); padding-top: 20px; }
